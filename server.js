@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const userRouter = require('./routes/api/user');
 const tripRouter = require('./routes/api/trip')
 
-mongoose.connect('mongodb://localhost:27017/fs05-xedike',
+mongoose.connect(
+  // 'mongodb://localhost:27017/fs05-xedike',
+  'mongodb+srv://admin:admin@cluster0-lhfxs.mongodb.net/xedike?retryWrites=true&w=majority',
   { useNewUrlParser: true, useCreateIndex: true }
 )
   .then(() => console.log("Connected successfully"))
