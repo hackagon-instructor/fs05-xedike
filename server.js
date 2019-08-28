@@ -1,11 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config()
+
 const userRouter = require('./routes/api/user');
 const tripRouter = require('./routes/api/trip')
 
+const mongoUri = process.env.NODE_ENV === "dev" ? process.env.MONGO_URI_DEV : process.env.MONGO_URI_PROD
+
+console.log("TCL: mongoUri", mongoUri)
+console.log("TCL: process.env.NODE_ENV",
+  process.env.NODE_ENV)
+
 mongoose.connect(
-  // 'mongodb://localhost:27017/fs05-xedike',
-  'mongodb+srv://admin:admin@cluster0-lhfxs.mongodb.net/xedike?retryWrites=true&w=majority',
+  mongoUri,
   { useNewUrlParser: true, useCreateIndex: true }
 )
   .then(() => console.log("Connected successfully"))
@@ -26,7 +33,7 @@ app.use('/uploads/avatars', express.static('./uploads/avatars'))
 app.use('/api/users', userRouter)
 app.use('/api/trips', tripRouter)
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`App is running on ${port}`)

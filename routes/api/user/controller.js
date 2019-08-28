@@ -108,7 +108,7 @@ module.exports.login = (req, res, next) => {
 
         jwt.sign(
           payload,
-          "XEDIKE",
+          process.env.SECRET_KEY,
           { expiresIn: 3600 },
           (err, token) => {
             if (err) res.json(err)
