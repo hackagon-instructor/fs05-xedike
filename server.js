@@ -5,7 +5,17 @@ require('dotenv').config()
 const userRouter = require('./routes/api/user');
 const tripRouter = require('./routes/api/trip')
 
-const mongoUri = process.env.NODE_ENV === "dev" ? process.env.MONGO_URI_DEV : process.env.MONGO_URI_PROD
+let mongoUri = ""
+switch (process.env.NODE_ENV) {
+  case "dev":
+    mongoUri = process.env.MONGO_URI_DEV
+    break;
+  case "prod":
+    mongoUri = process.env.MONGO_URI_PROD
+
+  default:
+    break;
+}
 
 console.log("TCL: mongoUri", mongoUri)
 console.log("TCL: process.env.NODE_ENV",
