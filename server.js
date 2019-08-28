@@ -17,10 +17,6 @@ switch (process.env.NODE_ENV) {
     break;
 }
 
-console.log("TCL: mongoUri", mongoUri)
-console.log("TCL: process.env.NODE_ENV",
-  process.env.NODE_ENV)
-
 mongoose.connect(
   mongoUri,
   { useNewUrlParser: true, useCreateIndex: true }
