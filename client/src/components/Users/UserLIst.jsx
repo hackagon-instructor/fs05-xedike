@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { getUsers } from '../../actions/users';
 
 class UserLIst extends Component {
 
   componentDidMount() {
-    axios.get('http://localhost:8888/api/users')
-      .then(users => {
-        console.log(users)
-      })
+    this.props.getUsers()
   }
 
-
   render() {
-
-
     return (
       <div>
         <h1>USER LIST</h1>
@@ -22,4 +17,4 @@ class UserLIst extends Component {
   }
 }
 
-export default UserLIst;
+export default connect(null, { getUsers })(UserLIst);
