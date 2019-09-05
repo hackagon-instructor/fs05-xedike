@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createUser } from '../../actions/auth';
-import {
-  Button, Form, FormGroup, Label,
-  Input, FormText, Container, FormFeedback,
-  option
-} from 'reactstrap';
+import { Button, Form, Container } from 'reactstrap';
 import _ from "lodash";
 import Text from "../Form/Text";
 import Select from "../Form/Select";
@@ -13,9 +9,11 @@ import Select from "../Form/Select";
 const formConfig = [
   { name: "email", type: "text", value: "" },
   { name: "password", type: "password", value: "" },
-  { name: "userType", type: "select", options: ["driver", "passenger"] }
+  { name: "userType", type: "select", options: ["driver", "passenger"] },
+  { name: "password2", type: "password", value: "" },
+  { name: "phone", type: "number", value: "" },
+  { name: "DOB", type: "date", value: "" },
 ]
-
 
 class Register extends Component {
   constructor(props) {
@@ -32,6 +30,12 @@ class Register extends Component {
     }
   }
 
+  getFieldValue = (field) => {
+    console.log("TCL: Register -> getFieldValue -> field", field)
+    const newState = { ...this.state, ...field }
+    this.setState(newState)
+  }
+
   renderForm = () => {
     const { errors } = this.state;
     return formConfig.map((item, index) => {
@@ -42,6 +46,7 @@ class Register extends Component {
             item={item}
             value={this.state[`${item.name}`]}
             error={errors[`${item.name}`]}
+            getFieldValue={this.getFieldValue}
           />
 
         default:
@@ -50,6 +55,7 @@ class Register extends Component {
             item={item}
             value={this.state[`${item.name}`]}
             error={errors[`${item.name}`]}
+            getFieldValue={this.getFieldValue}
           />
       }
     })
@@ -62,16 +68,8 @@ class Register extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (!_.isEmpty(nextProps.errors)) {
-      this.setState({
-        errors: nextProps.errors
-      })
-    }
-  }
-
-  onChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      errors: nextProps.errors
     })
   }
 

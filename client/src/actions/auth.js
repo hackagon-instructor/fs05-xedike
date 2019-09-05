@@ -5,6 +5,10 @@ export const createUser = (data, callback) => {
     axios.post('http://localhost:8888/api/users', data)
       .then(res => {
         console.log(res.data)
+        dispatch({
+          type: "GET_ERRORS",
+          payload: {}
+        })
       })
       .catch(err => {
         dispatch({

@@ -10,8 +10,13 @@ class Text extends Component {
   }
 
   onChange = (e) => {
+    const { item } = this.props;
     this.setState({
       [e.target.name]: e.target.value
+    }, () => {
+      this.props.getFieldValue({
+        [item.name]: this.state[`${item.name}`]
+      })
     })
   }
 
