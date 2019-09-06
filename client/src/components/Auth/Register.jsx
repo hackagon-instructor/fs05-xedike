@@ -74,9 +74,9 @@ class Register extends Component {
   }
 
   render() {
-    const { errors } = this.state;
     return (
       <Container className="text-left">
+        <h1>REGISTER</h1>
         <Form onSubmit={this.onSubmit}>
           {this.renderForm()}
 

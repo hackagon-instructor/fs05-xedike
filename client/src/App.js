@@ -10,9 +10,10 @@ import { BrowserRouter, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <Menu />
-      {/* <UserLIst /> */}
       <BrowserRouter>
+        <Menu />
+        {/* <UserLIst /> */}
+
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
       </BrowserRouter>
