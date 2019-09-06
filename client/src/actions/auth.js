@@ -38,11 +38,15 @@ export const login = (data) => {
 
         // set params token header cua nhung request
         setHeaders({ token })
-
-
-        // test
-        axios.get('http://localhost:8888/api/trips')
       })
       .catch(console.log)
+  }
+}
+
+export const logout = () => {
+  return (dispatch) => {
+    localStorage.removeItem('token')
+    dispatch({ type: "LOGOUT" })
+    setHeaders({})
   }
 }

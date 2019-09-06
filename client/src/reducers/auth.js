@@ -1,6 +1,13 @@
-const initialState = {
+import validateToken from '../helpers/validateToken';
+
+let initialState = {
   user: {},
   isAuthenticated: false
+}
+
+if (validateToken().status) initialState = {
+  user: validateToken().decoded,
+  isAuthenticated: true
 }
 
 const authReducer = (state = initialState, action) => {
@@ -9,6 +16,12 @@ const authReducer = (state = initialState, action) => {
       return {
         user: action.payload,
         isAuthenticated: true
+      }
+
+    case "LOGOUT":
+      return {
+        user: {},
+        isAuthenticated: false
       }
 
     default:
