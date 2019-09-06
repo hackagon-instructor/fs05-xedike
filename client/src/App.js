@@ -11,6 +11,7 @@ import Register from './components/Auth/Register';
 import Login from './components/Auth/Login'
 import Profile from './components/Auth/Profile'
 import NotFound from './components/NotFound';
+import UserList from './components/Users/UserLIst';
 
 if (validateToken().status) setHeaders({ token: localStorage.getItem('token') })
 
@@ -25,6 +26,7 @@ function App(props) {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={isAuthenticated ? Profile : NotFound} />
+        <Route path="/users" exact component={isAuthenticated ? UserList : NotFound} />
       </BrowserRouter>
     </div>
   );

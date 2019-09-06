@@ -39,18 +39,21 @@ class Menu extends React.Component {
               <NavItem>
                 <Link className="nav-link" to="/" >Home</Link>
               </NavItem>
-              <NavItem>
-                <Link
-                  className="nav-link"
-                  to="/"
-                  onClick={this.props.logout}
-                >Logout</Link>
-              </NavItem>
               {
                 isAuthenticated ?
                   <React.Fragment>
                     <NavItem>
                       <Link className="nav-link" to="/profile" >Profile</Link>
+                    </NavItem>
+                    <NavItem>
+                      <Link className="nav-link" to="/users" >Users</Link>
+                    </NavItem>
+                    <NavItem>
+                      <Link
+                        className="nav-link"
+                        to="/"
+                        onClick={this.props.logout}
+                      >Logout</Link>
                     </NavItem>
                   </React.Fragment>
                   :
